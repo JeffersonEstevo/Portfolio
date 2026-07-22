@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jefferson Estevo | Desenvolvedor Full Stack & UI/UX Specialist</title>
+    <meta name="description" content="Portfólio profissional de Jefferson Estevo, desenvolvedor Full Stack especializado em React, Node.js, TypeScript e arquitetura moderna de software.">
+    <meta name="keywords" content="Desenvolvedor Full Stack, React, Node.js, TypeScript, Tailwind CSS, Frontend, Backend, UI/UX">
+    <meta name="author" content="Jefferson Estevo">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Jefferson Estevo | Desenvolvedor Full Stack">
+    <meta property="og:description" content="Confira meus projetos, habilidades e trajetória na engenharia de software.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#0e7490',
+                        },
+                        accent: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ===== TEMA CLARO (Padrão) ===== */
+        :root {
+            --bg-primary: #f8fafc;           /* Fundo da página limpo (slate-50) */
+            --bg-card: rgba(255, 255, 255, 0.80); /* Card translúcido claro */
+            --text-primary: #0f172a;         /* Texto principal escuro (slate-900) */
+            --text-muted: #475569;           /* Texto secundário (slate-600) */
+            --border-color: rgba(0, 0, 0, 0.08);
+            --header-bg: rgba(248, 250, 252, 0.85);
+        }
+
+        /* ===== TEMA ESCURO (Quando o <html> tiver classe .dark) ===== */
+        html.dark {
+            --bg-primary: #0f172a;           /* Fundo escuro (slate-900) */
+            --bg-card: rgba(30, 41, 59, 0.70);  /* Card translúcido dark (slate-800) */
+            --text-primary: #f8fafc;         /* Texto principal claro (slate-50) */
+            --text-muted: #94a3b8;           /* Texto secundário (slate-400) */
+            --border-color: rgba(255, 255, 255, 0.08);
+            --header-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        /* Aplicação Global Forçada para Corrigir Fontes Claras */
+        body {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Correção do Header */
+        #navbar {
+            background-color: var(--header-bg) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Correção dos Glass Panels */
+        .glass-panel {
+            background: var(--bg-card) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(6, 182, 212, 0.5) !important;
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+        }
+
+        /* Forçar cores de parágrafos e títulos para não sumirem no claro */
+        html:not(.dark) p {
+            color: var(--text-muted);
+        }
+
+        html:not(.dark) h1, 
+        html:not(.dark) h2, 
+        html:not(.dark) h3, 
+        html:not(.dark) h4, 
+        html:not(.dark) strong, 
+        html:not(.dark) span:not([class*="text-brand"]) {
+            color: var(--text-primary);
+        }
+
+        /* Efeitos de Destaque */
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+        }
+
+        .glow {
+            box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-brand-500 selection:text-white">
+
+    <!-- Elemento de salto para acessibilidade -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-500 text-white px-4 py-2 rounded-lg z-50">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- Header / Navbar com Glassmorphism Moderno -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-slate-900/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="text-2xl font-bold font-mono tracking-tight group" aria-label="Página Inicial">
+                <span class="text-brand-500">&lt;</span>JeffersonEstevo <span class="text-brand-500">/&gt;</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#about" class="hover:text-brand-500 transition-colors">Sobre</a>
+                <a href="#skills" class="hover:text-brand-500 transition-colors">Habilidades</a>
+                <a href="#projects" class="hover:text-brand-500 transition-colors">Projetos</a>
+                <a href="#timeline" class="hover:text-brand-500 transition-colors">Trajetória</a>
+                <a href="#contact" class="hover:text-brand-500 transition-colors">Contato</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Toggle Dark/Light Mode -->
+                <button id="theme-toggle" type="button" aria-label="Alternar tema" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <!-- Ícone do SOL (Aparece APENAS quando a página ESTÁ no escuro, para voltar pro claro) -->
+                    <i class="fa-solid fa-sun hidden dark:block text-xl text-amber-400"></i>
+                    
+                    <!-- Ícone da LUA (Aparece APENAS quando a página ESTÁ no claro, para ir pro escuro) -->
+                    <i class="fa-solid fa-moon block dark:hidden text-xl text-slate-700"></i>
+                </button>
+
+                <!-- Toggle Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" class="md:hidden p-2.5 rounded-lg glass-panel">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800/60 px-4 pt-2 pb-6 space-y-3 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md">
+            <a href="#about" class="block py-2 text-base font-medium hover:text-brand-500 transition-colors">Sobre</a>
+            <a href="#skills" class="block py-2 text-base font-medium hover:text-brand-500 transition-colors">Habilidades</a>
+            <a href="#projects" class="block py-2 text-base font-medium hover:text-brand-500 transition-colors">Projetos</a>
+            <a href="#timeline" class="block py-2 text-base font-medium hover:text-brand-500 transition-colors">Trajetória</a>
+            <a href="#contact" class="block py-2 text-base font-medium hover:text-brand-500 transition-colors">Contato</a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content" class="relative overflow-hidden">
+        
+        <!-- Fundo decorativo animado -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+        <div class="absolute top-[30%] right-0 w-[500px] h-[500px] bg-accent-500/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs font-mono text-brand-500 mb-4 animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Disponível para novos projetos
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                    Construindo experiências digitais <span class="gradient-text">de alto impacto.</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                    Olá, sou <strong class="text-slate-200 font-semibold">Jefferson Estevo</strong>. Engenheiro de Software Full Stack especializado em arquiteturas modernas, React, Django e ecossistemas Cloud.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl gradient-bg font-semibold text-white shadow-lg hover:shadow-brand-500/25 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                        Ver Projetos <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel font-semibold hover:bg-slate-800/50 transition-all hover:scale-105 active:scale-95 border border-slate-700/50 flex items-center justify-center gap-2">
+                        Entrar em Contato <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+
+                <div class="pt-12 flex justify-center items-center space-x-6 text-2xl text-slate-600 dark:text-slate-400">
+                    <a href="https://github.com/JeffersonEstevo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-brand-500 dark:hover:text-brand-500 transition-colors">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://br.linkedin.com/in/jefferson-estevo-908a67237" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-brand-500 dark:hover:text-brand-500 transition-colors">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="hover:text-brand-500 dark:hover:text-brand-500 transition-colors">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE MIM -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 gradient-bg rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative aspect-square rounded-2xl overflow-hidden glass-panel border border-slate-700">
+                            <img src="img/Jeff.png" alt="Jefferson Estevo sorrindo em seu ambiente de trabalho" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                            Transformando código complexo em <span class="gradient-text">soluções elegantes</span>
+                        </h2>
+                        <p class="text-slate-400 leading-relaxed">
+                            Com mais de 6 anos de experiência em desenvolvimento de software, tenho paixão por criar aplicações web rápidas, acessíveis e escaláveis. Minha jornada envolve desde startups em estágio inicial até grandes plataformas corporativas.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Focado em código limpo (Clean Code), boas práticas de UX e arquitetura orientada a serviços. Sempre explorando novas fronteiras tecnológicas para entregar valor de negócios real.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="p-4 rounded-xl glass-panel border border-slate-800">
+                                <span class="block text-3xl font-bold gradient-text">6+</span>
+                                <span class="text-sm text-slate-400">Anos de Experiência</span>
+                            </div>
+                            <div class="p-4 rounded-xl glass-panel border border-slate-800">
+                                <span class="block text-3xl font-bold gradient-text">10+</span>
+                                <span class="text-sm text-slate-400">Projetos Desenvolvidos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HABILIDADES -->
+        <!-- 1. Seção Stack Tecnológica -->
+<section id="skills" class="bg-slate-100/70 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800/80 transition-colors duration-300 py-20">
+            <div class="max-w-6xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Stack Tecnológica</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto">Ferramentas e linguagens que utilizo no dia a dia para construir produtos robustos.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Frontend -->
+                    <div class="p-6 rounded-2xl glass-panel space-y-6 border border-slate-800">
+                        <h3 class="text-xl font-bold flex items-center gap-3">
+                            <i class="fa-solid fa-code text-brand-500"></i> Front-End
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>React / Next.js</span>
+                                    <span class="text-slate-400">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-brand-500 h-full rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>TypeScript</span>
+                                    <span class="text-slate-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-brand-500 h-full rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>Tailwind CSS / HTML5 / CSS3</span>
+                                    <span class="text-slate-400">98%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-brand-500 h-full rounded-full" style="width: 98%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend -->
+                    <div class="p-6 rounded-2xl glass-panel space-y-6 border border-slate-800">
+                        <h3 class="text-xl font-bold flex items-center gap-3">
+                            <i class="fa-solid fa-server text-accent-500"></i> Back-End & DevOps
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>Django / Express</span>
+                                    <span class="text-slate-400">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-accent-500 h-full rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>PostgreSQL / MongoDB</span>
+                                    <span class="text-slate-400">82%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-accent-500 h-full rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-mono mb-1">
+                                    <span>Docker / AWS</span>
+                                    <span class="text-slate-400">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-accent-500 h-full rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS -->
+        <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Projetos em Destaque</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Uma seleção dos meus trabalhos recentes mais impactantes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <article class="p-5 rounded-2xl glass-panel space-y-4 flex flex-col justify-between group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="overflow-hidden rounded-xl aspect-video relative">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Dashboard de Análise de Dados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-bold">DataPulse Analytics</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Dashboard SaaS corporativo para visualização de métricas de vendas em tempo real com suporte a múltiplos feeds de dados.</p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">Next.js</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">Tailwind</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">ChartJS</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/60">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-brand-600 dark:text-brand-500 hover:underline transition-colors flex items-center gap-1">
+                                Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+                                GitHub <i class="fa-brands fa-github text-xs"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 2 -->
+                    <article class="p-5 rounded-2xl glass-panel space-y-4 flex flex-col justify-between group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="overflow-hidden rounded-xl aspect-video relative">
+                                <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80" alt="Plataforma de E-commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-bold">OmniStore E-commerce</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Plataforma headless e-commerce completa integrada ao Stripe, com checkout otimizado e busca rápida.</p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">React</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">Node.js</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">Stripe API</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/60">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-brand-600 dark:text-brand-500 hover:underline transition-colors flex items-center gap-1">
+                                Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+                                GitHub <i class="fa-brands fa-github text-xs"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 3 -->
+                    <article class="p-5 rounded-2xl glass-panel space-y-4 flex flex-col justify-between group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="overflow-hidden rounded-xl aspect-video relative">
+                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Aplicação de IA e IA Generativa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-bold">Artisan AI Studio</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Ferramenta web interativa para geração de ativos visuais via IA com editor de prompts e histórico.</p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">TypeScript</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">OpenAI</span>
+                                <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-200/80 dark:bg-slate-800 text-brand-600 dark:text-brand-500 font-semibold">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/60">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-brand-600 dark:text-brand-500 hover:underline transition-colors flex items-center gap-1">
+                                Demo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+                                GitHub <i class="fa-brands fa-github text-xs"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMAÇÃO E EXPERIÊNCIA (TIMELINE) -->
+        <section id="timeline" class="bg-slate-200/40 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800/80 transition-colors duration-300 py-20">
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Trajetória</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Minha formação acadêmica e histórico profissional.</p>
+                </div>
+
+                <!-- Container da Linha do Tempo -->
+                <div class="relative border-l-2 border-slate-300 dark:border-slate-800 ml-4 md:ml-32 space-y-12">
+
+                    <!-- Evento 1: Profissional -->
+                    <div class="timeline-item relative pl-8 md:pl-12">
+                        <!-- Ponto decorativo adaptado para ambos os temas -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 ring-4 ring-slate-200 dark:ring-slate-950"></div>
+                        
+                        <span class="md:absolute md:-left-32 md:top-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 block mb-2 md:mb-0">2023 - Atual</span>
+                        <div class="p-6 rounded-2xl glass-panel space-y-2">
+                            <h3 class="text-xl font-bold">Desenvolvedor de Sistemas SCADA</h3>
+                            <span class="text-sm text-brand-600 dark:text-brand-500 font-medium block">LATS</span>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Liderança técnica no desenvolvimento de sistemas de tempo real para automação de subestações de energia. 
+                                Atuação especialista com sistemas supervisórios SAGE (Linux) e Elipse, 
+                                focada na otimização de performance e na alta disponibilidade de ambientes industriais críticos. 
+                                Realizando configuração, implantação e integração com IEDs e equipamentos de proteção elétrica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 2: Profissional -->
+                    <div class="timeline-item relative pl-8 md:pl-12">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 ring-4 ring-slate-200 dark:ring-slate-950"></div>
+                        
+                        <span class="md:absolute md:-left-32 md:top-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 block mb-2 md:mb-0">2020 - 2021</span>
+                        <div class="p-6 rounded-2xl glass-panel space-y-2">
+                            <h3 class="text-xl font-bold">Assessor de Relações Públicas</h3>
+                            <span class="text-sm text-amber-600 dark:text-amber-500 font-medium block">Include Engenharia</span>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Desenvolvimento e manutenção de Design Systems escaláveis utilizando React e Tailwind CSS. 
+                                Atuação estratégica na comunicação com clientes e stakeholders, alinhando requisitos de negócio 
+                                a soluções técnicas de alto impacto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 3: Acadêmico -->
+                    <div class="timeline-item relative pl-8 md:pl-12">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-slate-200 dark:ring-slate-950"></div>
+                        
+                        <span class="md:absolute md:-left-32 md:top-1.5 text-xs font-mono text-slate-500 dark:text-slate-400 block mb-2 md:mb-0">2018 - 2022</span>
+                        <div class="p-6 rounded-2xl glass-panel space-y-2">
+                            <h3 class="text-xl font-bold">Bacharelado em Ciência da Computação</h3>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium block">Universidade Federal</span>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Formação focada em estrutura de dados, algoritmos avançados, engenharia de software e inteligência artificial.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Vamos Conversar?</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto">Tem uma ideia ou oportunidade? Sinta-se à vontade para me enviar uma mensagem.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl glass-panel border border-slate-800">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="block text-sm font-medium">Nome</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="block text-sm font-medium">E-mail</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="message" class="block text-sm font-medium">Mensagem</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full sm:w-auto px-8 py-4 rounded-xl gradient-bg font-semibold text-white shadow-lg hover:shadow-brand-500/25 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                            Enviar Mensagem <i class="fa-solid fa-paper-plane text-sm"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-800/80 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; <span id="year"></span> Jefferson Estevo. Todos os direitos reservados. Desenvolvido com HTML5, Tailwind CSS & GSAP.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PRINCIPAL -->
+    <script>
+        // Atualiza ano do footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark/Light Mode Switcher Limpo
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Aplica o tema salvo no carregamento
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        // Alterna entre Dark e Light
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Animações GSAP & ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animação Hero
+        gsap.from("#hero h1", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        gsap.from("#hero p", {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 0.4
+        });
+
+        // Animações nas Seções
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // Animação itens da Timeline
+        gsap.utils.toArray('.timeline-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                x: -30,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+
+        // Formulário de Contato - Envio Simulado
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Obrigado pela mensagem! Entrarei em contato em breve.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
