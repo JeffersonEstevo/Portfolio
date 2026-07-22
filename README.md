@@ -67,29 +67,13 @@ Acesse a versão final do meu portfólio online e interativo servido via **GitHu
 
 ---
 
-## 📬 Vamos Conversar?
-
-Estou aberto a novas oportunidades de projetos, colaborações em código e networking profissional. Entre em contato diretamente através dos canais abaixo:
-
-- **💬 WhatsApp:** [Conversar no WhatsApp](https://wa.me/5584999999999)
-- **🐙 GitHub:** [github.com/seu-usuario](https://github.com/seu-usuario)
-- **💼 LinkedIn:** [linkedin.com/in/seu-usuario](https://linkedin.com/in/seu-usuario)
-
----
-
-<p align="center">
-  <i>Projetado e desenvolvido por você. Foco em performance, clareza e código limpo.</i>
-</p>
-
----
-
 ## 📬 Contato
 
 Sinta-se à vontade para entrar em contato ou conferir minhas redes:
 
-- **WhatsApp:** [Enviar Mensagem Direta](https://wa.me/5584999999999)
-- **GitHub:** [github.com/seu-usuario](https://github.com/seu-usuario)
-- **LinkedIn:** [linkedin.com/in/seu-usuario](https://linkedin.com/in/seu-usuario)
+- **WhatsApp:** [Enviar Mensagem Direta](https://wa.me/5584988563885)
+- **GitHub:** [github.com/seu-usuario](https://github.com/JeffersonEstevo)
+- **LinkedIn:** [linkedin.com/in/seu-usuario](https://br.linkedin.com/in/jefferson-estevo-908a67237)
 
 ---
 
