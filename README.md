@@ -63,7 +63,7 @@ O ecossistema do projeto e das minhas competências é organizado de forma categ
 
 Acesse a versão final do meu portfólio online e interativo servido via **GitHub Pages**:
 
-- **🌐 Live Demo / Website:** [https://seu-usuario.github.io/seu-repositorio](https://seu-usuario.github.io/seu-repositorio)
+- **🌐 Website / Portfólio:** [Acessar Portfólio Online](https://jeffersonestevo.github.io/Portfolio)
 
 ---
 
@@ -71,9 +71,9 @@ Acesse a versão final do meu portfólio online e interativo servido via **GitHu
 
 Sinta-se à vontade para entrar em contato ou conferir minhas redes:
 
-- **WhatsApp:** [Enviar Mensagem Direta](https://wa.me/5584988563885)
-- **GitHub:** [github.com/seu-usuario](https://github.com/JeffersonEstevo)
-- **LinkedIn:** [linkedin.com/in/seu-usuario](https://br.linkedin.com/in/jefferson-estevo-908a67237)
+- **💬 WhatsApp:** [Enviar Mensagem no WhatsApp](https://wa.me/5584988563885)
+- **🐙 GitHub:** [Acessar Perfil do GitHub](https://github.com/JeffersonEstevo)
+- **💼 LinkedIn:** [Conectar no LinkedIn](https://br.linkedin.com/in/jefferson-estevo-908a67237)
 
 ---
 
