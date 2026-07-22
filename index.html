@@ -586,34 +586,34 @@
             </div>
         </section>
 
-        <!-- CONTATO -->
+        <!-- CONTATO VIA WHATSAPP -->
         <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto space-y-12">
                 <div class="text-center space-y-4">
                     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Vamos Conversar?</h2>
-                    <p class="text-slate-400 max-w-xl mx-auto">Tem uma ideia ou oportunidade? Sinta-se à vontade para me enviar uma mensagem.</p>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">Tem uma ideia ou oportunidade? Envie uma mensagem direta para o meu WhatsApp.</p>
                 </div>
 
-                <div class="p-8 rounded-2xl glass-panel border border-slate-800">
+                <div class="p-8 rounded-2xl glass-panel border border-slate-200 dark:border-slate-800">
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-2">
-                                <label for="name" class="block text-sm font-medium">Nome</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all">
+                                <label for="name" class="block text-sm font-medium">Seu Nome</label>
+                                <input type="text" id="name" required placeholder="Ex: Maria Silva" class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all">
                             </div>
                             <div class="space-y-2">
-                                <label for="email" class="block text-sm font-medium">E-mail</label>
-                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all">
+                                <label for="subject" class="block text-sm font-medium">Assunto / Motivo</label>
+                                <input type="text" id="subject" placeholder="Ex: Proposta de Projeto, Recrutamento..." class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all">
                             </div>
                         </div>
 
                         <div class="space-y-2">
                             <label for="message" class="block text-sm font-medium">Mensagem</label>
-                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-all resize-none"></textarea>
+                            <textarea id="message" rows="5" required placeholder="Escreva aqui os detalhes da sua ideia ou proposta..." class="w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all resize-none"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full sm:w-auto px-8 py-4 rounded-xl gradient-bg font-semibold text-white shadow-lg hover:shadow-brand-500/25 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
-                            Enviar Mensagem <i class="fa-solid fa-paper-plane text-sm"></i>
+                        <button type="submit" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-semibold text-white shadow-lg hover:shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                            Iniciar Conversa no WhatsApp <i class="fa-brands fa-whatsapp text-xl"></i>
                         </button>
                     </form>
                 </div>
@@ -628,6 +628,17 @@
             <p>&copy; <span id="year"></span> Jefferson Estevo. Todos os direitos reservados. Desenvolvido com HTML5, Tailwind CSS & GSAP.</p>
         </div>
     </footer>
+
+    <!-- TOAST DE NOTIFICAÇÃO -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-5 py-4 rounded-xl bg-slate-900 text-slate-100 border border-slate-800 shadow-2xl">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+        </div>
+        <div>
+            <p class="text-sm font-semibold text-white">Redirecionando para o WhatsApp...</p>
+            <p class="text-xs text-slate-400">Obrigado pela mensagem! Entrarei em contato em breve.</p>
+        </div>
+    </div>
 
     <!-- SCRIPT PRINCIPAL -->
     <script>
@@ -716,12 +727,48 @@
             });
         });
 
-        // Formulário de Contato - Envio Simulado
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Obrigado pela mensagem! Entrarei em contato em breve.');
-            e.target.reset();
-        });
+
+        // Envio de Mensagem via Whatsapp
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const phoneNumber = '5584999999999'; // Seu número completo com DDD
+
+        const name = document.getElementById('name').value.trim();
+        const subject = document.getElementById('subject') ? document.getElementById('subject').value.trim() : '';
+        const message = document.getElementById('message').value.trim();
+
+        // 1. Criamos o texto cru com quebras de linha reais (\n)
+        let fullText = `*Contato via Portfólio*\n\n`;
+        fullText += `*Nome:* ${name}\n`;
+        
+        if (subject) {
+            fullText += `*Assunto:* ${subject}\n`;
+        }
+
+        fullText += `\n*Mensagem:*\n${message}`;
+
+        // 2. Passamos a string inteira pelo encodeURIComponent de uma só vez!
+        // Isso garante que o navegador codifique o \n para o formato exato que o WhatsApp exige.
+        const encodedText = encodeURIComponent(fullText);
+
+        // 3. Montamos a URL usando o endpoint do WhatsApp API
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedText}`;
+
+        // Exibição do Toast
+        const toast = document.getElementById('toast');
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        this.reset();
+
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+
+            window.open(whatsappUrl, '_blank');
+        }, 1500);
+    });
     </script>
 </body>
 </html>
